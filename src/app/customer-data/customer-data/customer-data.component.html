@@ -1,0 +1,37 @@
+<div class="search-control-container">
+  <mat-form-field class="search-control">
+    <mat-label>Search</mat-label>
+    <input matInput type="text" [formControl]="searchControl" />
+    <mat-hint>
+      Search By CustomerId, Ingredient
+    </mat-hint>
+    <mat-icon matSuffix>search</mat-icon>
+  </mat-form-field>
+</div>
+
+
+<table class="customers">
+  <thead>
+    <tr>
+      <th>Customer Id</th>
+      <th colspan="4">Pack data</th>
+    </tr>
+  </thead>
+  <tbody>
+    <ng-container *ngFor="let data of customerFilteredArr">
+      <tr>
+        <td *ngIf="data.filteredPackData" [attr.rowspan]="data.filteredPackData.length + 1">{{data.customer_id}}</td>
+        <th>Ingredient</th>
+        <th>Inventory Code</th>
+        <th>Quantity</th>
+        <th>Unit</th>
+      </tr>
+      <tr *ngFor="let pack of data.filteredPackData">
+        <td>{{pack.ingredient}}</td>
+        <td>{{pack.inventory_code}}</td>
+        <td>{{pack.quantity}}</td>
+        <td>{{pack.unit}}</td>
+      </tr>
+    </ng-container>
+  </tbody>
+</table>
